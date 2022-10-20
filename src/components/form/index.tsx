@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../button";
 import style from './form.module.scss';
 import {iTarefas} from '../../types/iTarefa';
-
+import { v4 } from 'uuid';
 interface Props {
     setTarefas: React.Dispatch<React.SetStateAction<iTarefas[]>>
 }
@@ -13,7 +13,13 @@ function Form({setTarefas} : Props){
 
     function adicionarTarefa(evento: React.FormEvent<HTMLFormElement>){
         evento.preventDefault();
-        setTarefas(tarefasAntigas => [...tarefasAntigas, {tempo, tarefa}])
+        setTarefas(tarefasAntigas => [...tarefasAntigas, {
+            tempo, 
+            tarefa,
+            completado: false,
+            selecionado: false,
+            id: v4()
+        }])
         setTarefa('');
         setTempo('00:00');
     }

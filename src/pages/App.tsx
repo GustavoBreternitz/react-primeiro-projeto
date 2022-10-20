@@ -7,10 +7,16 @@ import {iTarefas} from '../types/iTarefa';
 
 function App() {
   const [tarefas, setTarefa] = useState<iTarefas[]>([]);
+  const [selected, setSelected] = useState<iTarefas>();
+
+  function selecionaTarefa(tarefaSelecionada: iTarefas){
+    setSelected(tarefaSelecionada)
+  }
+
   return (
     <div className={style.AppStyle}>
         <Form setTarefas={setTarefa} />
-        <List tarefas={tarefas} />
+        <List tarefas={tarefas} setSelecionado={selecionaTarefa} />
         <Stopwatch />
     </div>
   );
